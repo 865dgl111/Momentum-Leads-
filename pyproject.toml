@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=67", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "momentum-codex"
+version = "0.1.0"
+description = "Automation toolkit for Momentum Leads CRM workflows"
+authors = [
+    { name = "Momentum Leads Automation" }
+]
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "requests>=2.31",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]
