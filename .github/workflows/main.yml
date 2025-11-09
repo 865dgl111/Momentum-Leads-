@@ -21,8 +21,5 @@ jobs:
         run: |
           pip install -r requirements.txt || pip install requests
 
-      - name: Run HubSpot Airtable Sync
-        env:
-          HUBSPOT_TOKEN: ${{ secrets.HUBSPOT_TOKEN }}
-        run: |
-          python integrations/hubspot_airtable_sync.py
+      - - name: Run HubSpot Airtable Sync
+  run: python hubspot_airtable_sync.py
