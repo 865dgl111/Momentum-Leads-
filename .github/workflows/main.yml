@@ -1,0 +1,28 @@
+name: Daily HubSpot Airtable Sync
+
+on:
+  schedule:
+    - cron: "0 9 * * *"  # runs daily at 9:00 UTC
+  workflow_dispatch:     # allows manual trigger
+
+jobs:
+  run-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt || pip install requests
+
+      - name: Run HubSpot Airtable Sync
+        env:
+          HUBSPOT_TOKEN: ${{ secrets.HUBSPOT_TOKEN }}
+        run: |
+          python integrations/hubspot_airtable_sync.py
